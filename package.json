@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha tests.js"
   },
+  "bin": {
+    "codecov": "./bin/codecov"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChrisCates/redis.token.git"
