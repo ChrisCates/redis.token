@@ -3,5 +3,6 @@ node_js:
   - "5"
 
 before_script:
-  - npm install -g mocha chai
+  - npm install -g mocha
+  - npm install chai
 script: npm test
