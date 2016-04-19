@@ -1,0 +1,30 @@
+{
+  "name": "redis.token",
+  "version": "0.1.0",
+  "description": " token based storage system in Redis that uses hashtables.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisCates/redis.token.git"
+  },
+  "keywords": [
+    "Chris",
+    "Cates",
+    "Redis",
+    "Token",
+    "Storage"
+  ],
+  "author": "Chris Cates",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChrisCates/redis.token/issues"
+  },
+  "homepage": "https://github.com/ChrisCates/redis.token#readme",
+  "dependencies": {
+    "crypto-js": "^3.1.6",
+    "redis": "^2.6.0-1"
+  }
+}
