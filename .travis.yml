@@ -7,7 +7,7 @@ services:
   - redis-server
 
 before_script:
-  - npm install codecov
+  - npm install codecov mocha
   - npm install -g mocha
 
 script: npm test
