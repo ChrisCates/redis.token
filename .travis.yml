@@ -18,4 +18,4 @@ before_script:
 script: npm test
 
 after_success:
-  - ./bin/codecov -e TRAVIS_NODE_VERSION
+  - istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec && ./node_modules/.bin/codecov
