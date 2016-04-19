@@ -1,4 +1,3 @@
-var assert = require('chai').assert;
 var redis = require("./index.js")()
 
 var token = ""
