@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/ChrisCates/redis.token.svg?branch=master)](https://travis-ci.org/ChrisCates/redis.token)
-
-[![codecov.io](https://codecov.io/github/ChrisCates/redis.token/coverage.svg?branch=master)](https://codecov.io/github/ChrisCates/redis.token?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/ChrisCates/redis.token/badge.svg?branch=master)](https://coveralls.io/github/ChrisCates/redis.token?branch=master)
 
 [![NPM](https://nodei.co/npm/redis.token.png)](https://nodei.co/npm/redis.token/)
 

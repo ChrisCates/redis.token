@@ -7,10 +7,6 @@ services:
   - redis-server
 
 before_script:
-  - npm install codecov.io mocha
   - npm install -g mocha
 
 script: npm test
-
-after_success:
-  - istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec && cat ./coverage/lcov.info | ./node_modules/.bin/codecov
