@@ -3,10 +3,19 @@ language: node_js
 node_js:
   - "5"
 
+os:
+  - linux
+  - osx
+  - windows
+
 services:
   - redis-server
 
 before_script:
+  - npm install codecov
   - npm install -g mocha
 
 script: npm test
+
+after_success:
+  - ./bin/codecov -e TRAVIS_NODE_VERSION

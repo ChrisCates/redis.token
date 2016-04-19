@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.org/ChrisCates/redis.token.svg?branch=master)](https://travis-ci.org/ChrisCates/redis.token)
 
+
+[![NPM](https://nodei.co/npm/redis.token.png)](https://nodei.co/npm/redis.token/)
+
 # redis.token
 ## A token based storage system in Redis that uses hashtables.
 ### By Chris Cates :star:
