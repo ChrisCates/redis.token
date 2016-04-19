@@ -24,7 +24,16 @@ redis
 ### Demo
 
 ```
-var redis = require("redis.token")
+var config = {
+  host: "localhost",
+  port: 6379,
+  path: null,
+  url: null,
+  //etc (refer to redis npm docs for full configuration)
+}
+
+
+var redis = require("redis.token")(config)
 
 redis.generate(
   {

@@ -2,6 +2,7 @@
 var redis = require("redis")
 var crypto = require("crypto-js")
 var config = {}
+var secret = "redis.token"
 var client
 
 module.exports = function(config) {
@@ -9,15 +10,10 @@ module.exports = function(config) {
   //Supply configuration object
   if (!config) {
     config = {}
-    config.ttl = 3600
-    config.key = "redis.token"
-  } else {
-    if (!config.ttl) config.ttl = 3600
-    if (!config.key) config.key = "redis.token"
   }
 
   //Create the client
-  client = redis.createClient()
+  client = redis.createClient(config)
 
   //Throw errors if there are any
   client.on("error", function(err) {
@@ -34,7 +30,7 @@ module.exports.generate = function(config,callback) {
     data.push(key)
     data.push(config[key])
   })
-  var rKey = crypto.SHA3(config.key + Math.random()).toString()
+  var rKey = crypto.SHA3(secret + Math.random()).toString()
   client.hmset(rKey,data, function(err,res) {
     if (err) throw err
     return callback({

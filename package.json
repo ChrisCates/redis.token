@@ -1,6 +1,6 @@
 {
   "name": "redis.token",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": " token based storage system in Redis that uses hashtables.",
   "main": "index.js",
   "scripts": {
