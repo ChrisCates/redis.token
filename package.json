@@ -7,9 +7,6 @@
     "test": "mocha tests.js",
     "nyc": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
-  "bin": {
-    "codecov": "./bin/codecov"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChrisCates/redis.token.git"
