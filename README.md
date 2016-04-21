@@ -36,18 +36,21 @@ var config = {
 }
 
 
-var redis = require("redis.token")(config)
+var redis = require("redis.token")(config, function(err) {
+  if (err) throw err
+})
 
 redis.generate(
   {
     "key": "value",
     "key2": "value"
   },
-  function(key) {
-    console.log(key)
+  function(err, key) {
+    if (err) throw err
     //Returns randomly generated SHA3 token
-    redis.get(key.token, function(reply) {
-      console.log(reply)
+    console.log(key)
+    redis.get(key.token, function(err, reply) {
+      if (err) throw err
       /*
       Returns
       {
@@ -55,6 +58,7 @@ redis.generate(
         "key2": "value"
       }
       */
+      console.log(reply)
     })
   }
 )

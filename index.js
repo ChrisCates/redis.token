@@ -5,7 +5,7 @@ var config = {}
 var secret = "redis.token"
 var client
 
-module.exports = function(config) {
+module.exports = function(config, callback) {
 
   //Supply configuration object
   if (!config) {
@@ -17,31 +17,38 @@ module.exports = function(config) {
 
   //Throw errors if there are any
   client.on("error", function(err) {
-    if (err) throw err
+    if (err) return callback(err)
   })
 
   return module.exports
 }
 
+//The generate token function
 module.exports.generate = function(config,callback) {
-  if (!config) throw "Must supply a parameter"
+  //If no object is supplied
+  if (!config) return callback("Must supply a parameter")
   var data = []
+  //Converts the object into a hashtable
   Object.keys(config).map(function(key) {
     data.push(key)
     data.push(config[key])
   })
+  //Create a random SHA3 key
   var rKey = crypto.SHA3(secret + Math.random()).toString()
+  //Set the key as the hashtable in Redis
   client.hmset(rKey,data, function(err,res) {
-    if (err) throw err
-    return callback({
+    return callback(err,{
       "token": rKey
     })
   })
 }
 
+//The get token function
 module.exports.get = function(key,callback) {
-  if (!key) throw "Must supply a key"
+  //If no key is supplied return an error
+  if (!key) return callback("Must supply a key")
+  //Get the key and it's associated objects
   client.HGETALL(key, function(err,reply) {
-    return callback(reply)
+    return callback(err,reply)
   })
 }
