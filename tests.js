@@ -8,7 +8,8 @@ describe('Redis Token', function() {
     it('should return a token', function (done) {
       redis.generate({
         "key": "value"
-      }, function(response) {
+      }, function(err,response) {
+        if (err) throw err
         if (response) {
           token = response.token
           done()
@@ -21,7 +22,8 @@ describe('Redis Token', function() {
 
   describe('Redis Token .get()', function () {
     it('should return an object', function (done) {
-      redis.get(token, function(obj) {
+      redis.get(token, function(err, obj) {
+        if (err) throw err
         if (obj) {
           done()
         } else {
