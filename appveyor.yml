@@ -3,6 +3,8 @@ environment:
   nodejs_version: "5"
 
 platform: Any CPU
+shallow_clone: true
+
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -11,10 +13,11 @@ install:
   - redis-64\tools\redis-server.exe --service-install
   - redis-64\tools\redis-server.exe --service-start
   - '@ECHO Redis Started'
-  # Get the latest stable version of Node.js or io.js
+  # Get the latest stable version of Node 0.STABLE.latest
   - ps: Install-Product node $env:nodejs_version
   # install modules
   - npm install
+  - npm install hiredis --msvs_version=2013
   - npm install mocha -g
 
 # Post-install test scripts.
