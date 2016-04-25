@@ -2,6 +2,8 @@
 environment:
   nodejs_version: "5"
 
+platform: Any CPU
+
 # Install scripts. (runs after repo cloning)
 install:
   # Install the Redis
@@ -22,6 +24,10 @@ test_script:
   - npm --version
   # run tests
   - npm test
+
+os:
+  - Default Azure
+  - Windows Server 2012 R2
 
 # Don't actually build.
 build: off
