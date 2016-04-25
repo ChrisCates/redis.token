@@ -4,6 +4,13 @@ var token = ""
 
 describe('Redis Token', function() {
 
+  describe('Redis Token initialize', function () {
+    it('should initiailize redis', function (done) {
+      redis = require("./index.js")()
+      done()
+    })
+  })
+
   describe('Redis Token .generate()', function () {
     it('should return a token', function (done) {
       redis.generate({
