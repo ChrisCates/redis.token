@@ -6,19 +6,21 @@ var secret = "redis.token"
 var client
 
 module.exports = function(config, callback) {
-
-  //Supply configuration object
-  if (!config) {
-    config = {}
-  }
-
   //Create the client
   client = redis.createClient(config)
 
   //Throw errors if there are any
-  client.on("error", function(err) {
-    if (err) return callback(err)
-  })
+  client.on("error", function(err) { if (err) return callback(err) })
+
+  return module.exports
+}
+
+module.exports.init = function(config, callback) {
+  //Create the client
+  client = redis.createClient(config)
+
+  //Throw errors if there are any
+  client.on("error", function(err) { if (err) return callback(err) })
 
   return module.exports
 }

@@ -1,11 +1,16 @@
 {
   "name": "redis.token",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": " token based storage system in Redis that uses hashtables.",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests.js",
     "nyc": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "nyc": {
+    "exclude": [
+      "./tests.js"
+    ]
   },
   "repository": {
     "type": "git",
