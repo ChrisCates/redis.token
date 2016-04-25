@@ -2,6 +2,12 @@
 environment:
   nodejs_version: "5"
 
+before_build:
+  - nuget restore .\Hangfire.Redis.StackExchange.sln
+  - packages\Redis-32.2.6.12.1\tools\redis-server.exe --service-install
+  - packages\Redis-32.2.6.12.1\tools\redis-server.exe --service-start
+  - '@ECHO Redis Started'
+
 # Install scripts. (runs after repo cloning)
 install:
   # Get the latest stable version of Node.js or io.js
@@ -16,3 +22,6 @@ test_script:
   - npm --version
   # run tests
   - npm test
+
+# Don't actually build.
+build: off
