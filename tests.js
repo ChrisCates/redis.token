@@ -1,12 +1,19 @@
-var redis = require("./index.js")()
+var redis
 
 var token = ""
 
 describe('Redis Token', function() {
 
   describe('Redis Token initialize', function () {
-    it('should initiailize redis', function (done) {
-      redis = require("./index.js")()
+    it('should initiailize redis - with error', function (done) {
+      redis = require("./index.js")({
+        "host": "oops"
+      }, function(err) {
+        if (err) done()
+      })
+    })
+    it('should initiailize redis - without error', function (done) {
+      redis = require("./index.js").init()
       done()
     })
   })
@@ -20,8 +27,6 @@ describe('Redis Token', function() {
         if (response) {
           token = response.token
           done()
-        } else {
-          throw "Did not supply a token..."
         }
       })
     })
@@ -33,8 +38,6 @@ describe('Redis Token', function() {
         if (err) throw err
         if (obj) {
           done()
-        } else {
-          throw "Did not supply an object..."
         }
       })
     })
