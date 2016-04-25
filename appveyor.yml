@@ -2,14 +2,13 @@
 environment:
   nodejs_version: "5"
 
-before_build:
-  - nuget restore .\Hangfire.Redis.StackExchange.sln
-  - packages\Redis-32.2.6.12.1\tools\redis-server.exe --service-install
-  - packages\Redis-32.2.6.12.1\tools\redis-server.exe --service-start
-  - '@ECHO Redis Started'
-
 # Install scripts. (runs after repo cloning)
 install:
+  # Install the Redis
+  - nuget install redis-64 -excludeversion
+  - redis-64\tools\redis-server.exe --service-install
+  - redis-64\tools\redis-server.exe --service-start
+  - '@ECHO Redis Started'
   # Get the latest stable version of Node.js or io.js
   - ps: Install-Product node $env:nodejs_version
   # install modules
