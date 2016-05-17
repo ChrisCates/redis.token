@@ -86,7 +86,9 @@ With the token generated in `.generate()` you can retrieve the object stored.
 
 ```javascript
 var config = {
-  salt: crypto.randomBytes(100)
+  salt: function() {
+    crypto.randomBytes(100)
+  }
 }
 ```
 
