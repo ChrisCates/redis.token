@@ -3,14 +3,6 @@ sudo: required
 services:
   - docker
 
-language: node_js
-
 before_install:
   - docker pull chriscates/redis.token
-  - docker run chriscates/redis.token 
-
-before_script:
-  - npm install -g mocha
-
-script:
-  - npm run nyc
+  - docker run chriscates/redis.token
