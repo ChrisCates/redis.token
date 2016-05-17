@@ -41,11 +41,11 @@ RUN buildDeps='gcc libc6-dev make' \
 
 RUN mkdir /data && chown redis:redis /data
 
-CMD ["redis-server"]
-
 EXPOSE      6379
 RUN         mkdir -p /src/app/
 WORKDIR     /src/app
 COPY        /Users/chriscates/projects/redis.token/* /src/app/
 RUN chmod a+x /src/app/launch.sh
 ENTRYPOINT  ["/src/app/launch.sh"]
+
+CMD redis-server
