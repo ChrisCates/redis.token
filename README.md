@@ -10,7 +10,8 @@
 ### By Chris Cates :star:
 
 ### Installation
-```
+
+```bash
 npm install redis.token --save
 ```
 
@@ -21,14 +22,14 @@ The `Redis.GET` command automatically returns an object in the `redis` npm modul
 
 Two dependencies for this project is (NPM):
 
-```
+```bash
 crypto-js
 redis
 ```
 
 ### Demo
 
-```
+```javascript
 var config = {
   host: "localhost",
   port: 6379,
