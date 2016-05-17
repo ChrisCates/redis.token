@@ -76,4 +76,14 @@ Generates a hashtable with the key values in `obj`, callback returns a token.
 
 With the token generated in `.generate()` you can retrieve the object stored.
 
-#### Licensed under &copy; MIT 
+### You can curry your own salt with a function
+
+```javascript
+var config = {
+  salt: crypto.randomBytes(100)
+}
+```
+
+This is an optional configuration for the NPM module!
+
+#### Licensed under &copy; MIT

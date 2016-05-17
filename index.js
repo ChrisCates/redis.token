@@ -1,46 +1,52 @@
 //Dependencies
-var redis = require("redis")
-var crypto = require("crypto-js")
+var redis = require('redis')
+var cryptojs = require('crypto-js')
+var crypto = require('crypto')
 var config = {}
-var secret = "redis.token"
 var client
 
 module.exports = function(config, callback) {
   //Create the client
-  client = redis.createClient(config)
+  client = redis.createClient(config || {})
 
   //Throw errors if there are any
-  client.on("error", function(err) { if (err) return callback(err) })
+  client.on('error', function(err) { if (err) callback(new Error(err)) })
 
   return module.exports
 }
 
 module.exports.init = function(config, callback) {
   //Create the client
-  client = redis.createClient(config)
+  client = redis.createClient(config || {})
 
   //Throw errors if there are any
-  client.on("error", function(err) { if (err) return callback(err) })
+  client.on('error', function(err) { if (err) callback(new Error(err)) })
 
   return module.exports
 }
 
 //The generate token function
-module.exports.generate = function(config,callback) {
+module.exports.generate = function(c,callback) {
   //If no object is supplied
-  if (!config) return callback("Must supply a parameter")
+  if (!c) callback(new Error('Must supply a config!'))
   var data = []
   //Converts the object into a hashtable
-  Object.keys(config).map(function(key) {
+  Object.keys(c).map(function(key) {
     data.push(key)
     data.push(config[key])
   })
   //Create a random SHA3 key
-  var rKey = crypto.SHA3(secret + Math.random()).toString()
+  var rKey
+  if (!config.salt) {
+    rKey = cryptojs.SHA3(crypto.randomBytes(100)).toString()
+  } else {
+    rKey = config.salt()
+  }
+
   //Set the key as the hashtable in Redis
   client.hmset(rKey,data, function(err,res) {
     return callback(err,{
-      "token": rKey
+      'token': rKey
     })
   })
 }
@@ -48,7 +54,7 @@ module.exports.generate = function(config,callback) {
 //The get token function
 module.exports.get = function(key,callback) {
   //If no key is supplied return an error
-  if (!key) return callback("Must supply a key")
+  if (!key) callback(new Error('Must supply a key!'))
   //Get the key and it's associated objects
   client.HGETALL(key, function(err,reply) {
     return callback(err,reply)
