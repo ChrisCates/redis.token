@@ -26,6 +26,12 @@ crypto-js
 redis
 ```
 
+### Run via Docker
+
+```
+docker pull chriscates/redis.token
+```
+
 ### Demo
 
 ```javascript
