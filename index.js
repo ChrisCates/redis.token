@@ -31,7 +31,7 @@ module.exports.generate = function(c,callback) {
   if (!c) callback(new Error('Must supply a config!'))
   var data = []
   //Converts the object into a hashtable
-  Object.keys(c).map(function(key) {
+  Object.keys(c).forEach(function(key) {
     data.push(key)
     data.push(config[key])
   })
