@@ -75,3 +75,5 @@ Generates a hashtable with the key values in `obj`, callback returns a token.
 #### redis.token.get(token,callback)
 
 With the token generated in `.generate()` you can retrieve the object stored.
+
+#### Licensed under &copy; MIT 
