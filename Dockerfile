@@ -47,4 +47,4 @@ EXPOSE      6379
 RUN         mkdir -p /src/app/
 WORKDIR     /src/app
 COPY        "$HOME"/* /src/app/
-ENTRYPOINT  ["launch.sh"]
+ENTRYPOINT  ["/src/app/launch.sh"]
