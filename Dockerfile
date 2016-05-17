@@ -1,9 +1,7 @@
-FROM        ubuntu:14.04
-RUN         apt-get update
-RUN         apt-get install redis-server nodejs nodejs-legacy npm -y
-RUN         mkdir -p /usr/src/app
-WORKDIR     /
-RUN         npm install -g mocha
-RUN         npm install
+FROM        node:6-wheezy
 EXPOSE      6379
-ENTRYPOINT  ["/usr/bin/redis-server"]
+RUN         mkdir -p /src/app/
+WORKDIR     /src/app
+COPY        "$HOME"/* /src/app/
+RUN         sh launch.sh
+ENTRYPOINT  ["/usr/bin/redis-server"]  

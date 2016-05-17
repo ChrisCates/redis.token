@@ -7,7 +7,7 @@ var client
 
 module.exports = function(config, callback) {
   //Create the client
-  client = redis.createClient(config || {})
+  client = redis.createClient(config)
 
   //Throw errors if there are any
   client.on('error', function(err) { if (err) callback(new Error(err)) })
@@ -17,7 +17,7 @@ module.exports = function(config, callback) {
 
 module.exports.init = function(config, callback) {
   //Create the client
-  client = redis.createClient(config || {})
+  client = redis.createClient(config)
 
   //Throw errors if there are any
   client.on('error', function(err) { if (err) return callback(new Error(err)) })
@@ -44,8 +44,8 @@ module.exports.generate = function(c,callback) {
   }
 
   //Set the key as the hashtable in Redis
-  client.hmset(rKey,data, function(err,res) {
-    return callback(err,{
+  client.hmset(rKey, data, function(err,res) {
+    return callback(err, {
       'token': rKey
     })
   })
