@@ -2,7 +2,6 @@
 [![Build Status](https://travis-ci.org/ChrisCates/redis.token.svg?branch=master)](https://travis-ci.org/ChrisCates/redis.token)
 [![Coverage Status](https://coveralls.io/repos/github/ChrisCates/redis.token/badge.svg?branch=master)](https://coveralls.io/github/ChrisCates/redis.token?branch=master)
 ![Codeship](https://codeship.com/projects/a6d7def0-ecd3-0133-6c4f-5aad4fd90081/status?branch=master)
-[![Build status](https://ci.appveyor.com/api/projects/status/vbpwefi8ot45rl2c?svg=true)](https://ci.appveyor.com/project/ChrisCates/redis-token)
 
 [![NPM](https://nodei.co/npm/redis.token.png)](https://nodei.co/npm/redis.token/)
 
