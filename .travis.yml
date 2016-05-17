@@ -1,8 +1,14 @@
-sudo: required
+language: node_js
+
+node_js:
+  - "5"
 
 services:
-  - docker
+  - redis-server
 
-before_install:
-  - docker pull chriscates/redis.token
-  - docker run chriscates/redis.token
+before_script:
+  - npm install -g mocha
+
+script:
+  - npm test
+  - npm run nyc
