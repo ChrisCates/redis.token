@@ -20,7 +20,7 @@ module.exports.init = function(config, callback) {
   client = redis.createClient(config || {})
 
   //Throw errors if there are any
-  client.on('error', function(err) { if (err) callback(new Error(err)) })
+  client.on('error', function(err) { if (err) return callback(new Error(err)) })
 
   return module.exports
 }
@@ -28,7 +28,7 @@ module.exports.init = function(config, callback) {
 //The generate token function
 module.exports.generate = function(c,callback) {
   //If no object is supplied
-  if (!c) callback(new Error('Must supply a config!'))
+  if (!c) return callback(new Error('Must supply a config!'))
   var data = []
   //Converts the object into a hashtable
   Object.keys(c).forEach(function(key) {
@@ -54,7 +54,7 @@ module.exports.generate = function(c,callback) {
 //The get token function
 module.exports.get = function(key,callback) {
   //If no key is supplied return an error
-  if (!key) callback(new Error('Must supply a key!'))
+  if (!key) return callback(new Error('Must supply a key!'))
   //Get the key and it's associated objects
   client.HGETALL(key, function(err,reply) {
     return callback(err,reply)
